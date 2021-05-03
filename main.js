@@ -14,19 +14,30 @@ const getRandomWordArray = async function () {
 
 getRandomWordArray();
 
-const wordArrayIterator = () => {
-  // setting up a closure so the counter isn't global
-  let counter = 1;
-
-  function inner() {
-    // using our counter to traverse the words array without mutating it
-    h1.innerHTML = words.slice(counter, counter + 1);
-    return counter++;
-  }
-
-  return inner;
+const handleClick = () => {
+  // console.time('getting word');
+  const wordIndex = words.indexOf(h1.innerText);
+  // console.timeEnd('getting word');
+  return (h1.innerHTML = words[wordIndex + 1]);
 };
 
-const handleClick = wordArrayIterator();
+// const wordArrayIterator = () => {
+//   // The closure method of traversing the array is a few tenths of a millisecond faster than using indexOf();
+
+//   // setting up a closure so the counter isn't global
+//   let counter = 1;
+
+//   function inner() {
+//     // using our counter to traverse the words array without mutating it
+//     console.time('getting word');
+//     h1.innerHTML = words.slice(counter, counter + 1);
+//     console.timeEnd('getting word');
+//     return counter++;
+//   }
+
+//   return inner;
+// };
+
+// const handleClick = wordArrayIterator();
 
 button.addEventListener('click', () => handleClick());
