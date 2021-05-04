@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import useKeypress from '../hooks/useKeypress';
 import fetchArray from '../utils/fetchArray';
 
 const WordChanger = () => {
@@ -13,16 +14,16 @@ const WordChanger = () => {
     setCurrentWord(wordArray[0]);
   }, [wordArray]);
 
-  const handleClick = () => {
-    // each click gets the index of the current word and sets a new current word to the index + 1
+  const changeWord = () => {
     const wordIndex = wordArray.indexOf(currentWord);
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
+  useKeypress(currentWord, changeWord);
+
   return (
     <main>
       <h1>{currentWord}</h1>
-      <button onClick={handleClick}>New word</button>
     </main>
   );
 };
