@@ -4,7 +4,7 @@ import WordChanger from './components/WordChanger';
 function App() {
   return (
     <div>
-      <WordChanger />;
+      <WordChanger />
     </div>
   );
 }

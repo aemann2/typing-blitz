@@ -1,30 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import fetchArray from '../utils/fetchArray';
 
 const WordChanger = () => {
   const [wordArray, setWordArray] = useState([]);
-  const h1 = useRef(null);
-
-  const endpoint = 'http://random-word-api.herokuapp.com/word?number=100';
+  const [currentWord, setCurrentWord] = useState(null);
 
   useEffect(() => {
-    async function getRandomWordArray() {
-      // getting words from the API and setting the h1 to the first word in the array
-      await fetch(endpoint)
-        .then((res) => res.json())
-        .then((data) => setWordArray([...data]));
-    }
-    getRandomWordArray();
+    fetchArray(setWordArray);
   }, []);
 
+  useEffect(() => {
+    setCurrentWord(wordArray[0]);
+  }, [wordArray]);
+
   const handleClick = () => {
-    console.log(h1.current);
-    const wordIndex = wordArray.indexOf(h1.current);
-    h1.current = wordArray[wordIndex + 1];
+    // each click gets the index of the current word and sets a new current word to the index + 1
+    const wordIndex = wordArray.indexOf(currentWord);
+    setCurrentWord(wordArray[wordIndex + 1]);
   };
 
   return (
     <main>
-      <h1 ref={h1}>{wordArray[0]}</h1>
+      <h1>{currentWord}</h1>
       <button onClick={handleClick}>New word</button>
     </main>
   );
