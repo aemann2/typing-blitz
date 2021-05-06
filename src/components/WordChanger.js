@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import useKeypress from '../hooks/useKeypress';
-import fetchArray from '../utils/fetchArray';
 import { Highlight } from 'react-highlight-regex';
 
-const WordChanger = () => {
-  const [wordArray, setWordArray] = useState([]);
-  const [currentWord, setCurrentWord] = useState(null);
+const WordChanger = ({ wordArray, currentWord, setCurrentWord }) => {
   const [toHighlight, setToHighlight] = useState('');
   let regex = null;
 
   useEffect(() => {
-    fetchArray(setWordArray);
-  }, []);
-
-  useEffect(() => {
     setCurrentWord(wordArray[0]);
-  }, [wordArray]);
+  }, [wordArray, setCurrentWord]);
 
   const changeWord = () => {
     const wordIndex = wordArray.indexOf(currentWord);

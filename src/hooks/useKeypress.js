@@ -51,5 +51,13 @@ export default function useKeypress(
       window.addEventListener('keydown', onKeydown);
       return () => window.removeEventListener('keydown', onKeydown);
     }
-  }, [currentWord, substring, callback, toHighlight, setToHighlight]);
+  }, [
+    currentWord,
+    substring,
+    callback,
+    toHighlight,
+    setToHighlight,
+    score,
+    setScore,
+  ]);
 }
