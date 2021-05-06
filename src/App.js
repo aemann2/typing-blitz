@@ -1,33 +1,25 @@
-import { useState, useEffect } from 'react';
 import './App.css';
-import fetchArray from './utils/fetchArray';
+import { useState } from 'react';
 import Score from './components/Score';
 import Timer from './components/Timer';
 import WordChanger from './components/WordChanger';
 import WordPreview from './components/WordPreview';
 import ScoreContextProvider from './context/ScoreContext';
+import WordsContextProvider from './context/WordsContext';
 
 function App() {
-  const [wordArray, setWordArray] = useState([]);
-  const [currentWord, setCurrentWord] = useState(null);
-
-  useEffect(() => {
-    fetchArray(setWordArray);
-  }, [setWordArray]);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   return (
     <div className='app'>
-      <ScoreContextProvider>
-        <Score />
-        <Timer />
-        <WordChanger
-          wordArray={wordArray}
-          setWordArray={setWordArray}
-          currentWord={currentWord}
-          setCurrentWord={setCurrentWord}
-        />
-        <WordPreview wordArray={wordArray} currentWord={currentWord} />
-      </ScoreContextProvider>
+      <WordsContextProvider>
+        <ScoreContextProvider>
+          <Score />
+          <Timer isGameOver={isGameOver} setIsGameOver={setIsGameOver} />
+          <WordChanger />
+          <WordPreview />
+        </ScoreContextProvider>
+      </WordsContextProvider>
     </div>
   );
 }

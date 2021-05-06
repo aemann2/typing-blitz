@@ -17,10 +17,6 @@ const Timer = () => {
     startTimer();
   };
 
-  const pauseTimer = () => {
-    const pauseTimer = CountdownRef.current.getApi().pause;
-    pauseTimer();
-  };
   return (
     <div>
       <div>
@@ -32,7 +28,6 @@ const Timer = () => {
         />
       </div>
       <button onClick={startTimer}>Start</button>
-      <button onClick={pauseTimer}>Stop</button>
     </div>
   );
 };

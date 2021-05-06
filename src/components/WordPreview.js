@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { WordsContext } from '../context/WordsContext';
 
-const WordPreview = ({ wordArray, currentWord }) => {
+const WordPreview = () => {
+  const { wordArray, currentWord } = useContext(WordsContext);
   const currentWordIndex = wordArray.indexOf(currentWord);
   return (
     <div>
