@@ -1,7 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import Score from './components/Score';
-import Timer from './components/Timer';
+import Countdown from './components/Timer';
 import WordChanger from './components/WordChanger';
 import WordPreview from './components/WordPreview';
 import ScoreContextProvider from './context/ScoreContext';
@@ -15,7 +15,7 @@ function App() {
       <WordsContextProvider>
         <ScoreContextProvider>
           <Score />
-          <Timer isGameOver={isGameOver} setIsGameOver={setIsGameOver} />
+          <Countdown isGameOver={isGameOver} setIsGameOver={setIsGameOver} />
           <WordChanger />
           <WordPreview />
         </ScoreContextProvider>

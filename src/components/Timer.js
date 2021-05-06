@@ -1,35 +1,34 @@
-import { useRef } from 'react';
-import Countdown, { zeroPad } from 'react-countdown';
+import Timer from 'react-compound-timer';
 
-const Timer = () => {
-  const renderer = ({ minutes, seconds }) => (
-    <span>
-      {zeroPad(minutes, 1)}:{zeroPad(seconds)}
-    </span>
-  );
-
-  const CountdownRef = useRef(null);
-
-  const startTimer = () => {
-    const startTimer = CountdownRef.current.getApi().start;
-    // ^ using the getApi() function, as the documentation suggests
-    // const startTimer = CountdownRef.current.api.start;
-    startTimer();
-  };
-
+const Countdown = ({ setIsGameOver }) => {
   return (
     <div>
-      <div>
-        <Countdown
-          ref={CountdownRef}
-          date={Date.now() + 60000}
-          autoStart={false}
-          renderer={renderer}
-        />
-      </div>
-      <button onClick={startTimer}>Start</button>
+      <Timer
+        initialTime={60000}
+        startImmediately={false}
+        lastUnit='s'
+        direction='backward'
+        timeToUpdate={100}
+        checkpoints={[
+          {
+            time: 0,
+            callback: () => setIsGameOver(true),
+          },
+        ]}
+      >
+        {({ start }) => (
+          <>
+            <div>
+              <Timer.Seconds />
+            </div>
+            <div>
+              <button onClick={start}>Start</button>
+            </div>
+          </>
+        )}
+      </Timer>
     </div>
   );
 };
 
-export default Timer;
+export default Countdown;
