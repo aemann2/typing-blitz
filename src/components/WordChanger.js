@@ -34,6 +34,11 @@ const WordChanger = () => {
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
+  // const setSubstringAndHighlight = (e) => {
+  //   setSubstring(substring.slice(1, currentWord.length));
+  //   setToHighlight(toHighlight + e.key);
+  // };
+
   const resetSubstringAndHighlight = () => {
     setSubstring(null);
     setToHighlight('');
@@ -50,10 +55,10 @@ const WordChanger = () => {
         // if it's the last character and the right letter...
         if (e.key === substring[0] && substring.length === 1) {
           resetSubstringAndHighlight();
-          setToHighlight(toHighlight + e.key);
           changeCurrentWord();
           // elif it's the right letter...
         } else if (e.key === substring[0]) {
+          // setSubstringAndHighlight(e);
           setSubstring(substring.slice(1, currentWord.length));
           setToHighlight(toHighlight + e.key);
           // if it's the wrong letter
@@ -65,6 +70,7 @@ const WordChanger = () => {
         // if it's the right character of the first letter, set the substring and highlight
         setSubstring(currentWord.slice(1, currentWord.length));
         setToHighlight(toHighlight + e.key);
+        // setSubstringAndHighlight(e);
       } else {
         //otherwise, switch the word out
         resetSubstringAndHighlight();
