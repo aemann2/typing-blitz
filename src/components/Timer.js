@@ -1,6 +1,11 @@
+import { useContext } from 'react';
 import Timer from 'react-compound-timer';
+import { ScoreContext } from '../context/ScoreContext';
+import { WordsContext } from '../context/WordsContext';
 
 const Countdown = ({ setIsGameOver, isTimeOut, setIsTimeOut }) => {
+  const { setScore } = useContext(ScoreContext);
+  const { wordArray, currentWord, setCurrentWord } = useContext(WordsContext);
   return (
     <div>
       <Timer
@@ -32,6 +37,10 @@ const Countdown = ({ setIsGameOver, isTimeOut, setIsTimeOut }) => {
                     start();
                     setIsGameOver(false);
                     setIsTimeOut(false);
+                    setScore(0);
+                    setCurrentWord(
+                      wordArray[wordArray.indexOf(currentWord) + 1]
+                    );
                   }}
                 >
                   Reset
