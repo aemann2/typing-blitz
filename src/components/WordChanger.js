@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { WordsContext } from '../context/WordsContext';
+import * as Helper from '../utils/helpers';
 import fetchArray from '../utils/fetchArray';
 import useKeypress from '../hooks/useKeypress';
 import { Highlight } from 'react-highlight-regex';
@@ -10,7 +11,9 @@ const WordChanger = () => {
     setWordArray,
     currentWord,
     setCurrentWord,
+    setSubstring,
     toHighlight,
+    setToHighlight,
   } = useContext(WordsContext);
 
   let regex = null;
@@ -23,12 +26,17 @@ const WordChanger = () => {
     setCurrentWord(wordArray[0]);
   }, [wordArray, setCurrentWord]);
 
-  const changeWord = () => {
+  const changeCurrentWord = () => {
     const wordIndex = wordArray.indexOf(currentWord);
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
-  useKeypress(changeWord);
+  const resetSubstringAndHighlight = () => {
+    setSubstring(null);
+    setToHighlight('');
+  };
+
+  useKeypress(changeCurrentWord);
 
   if (toHighlight) {
     regex = new RegExp(toHighlight);

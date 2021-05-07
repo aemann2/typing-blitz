@@ -1,14 +1,18 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { WordsContext } from '../context/WordsContext';
 import { ScoreContext } from '../context/ScoreContext';
 import { GameStateContext } from '../context/GameStateContext';
 
 export default function useKeypress(callback) {
   const { score, setScore } = useContext(ScoreContext);
-  const { currentWord, toHighlight, setToHighlight } = useContext(WordsContext);
+  const {
+    currentWord,
+    toHighlight,
+    setToHighlight,
+    substring,
+    setSubstring,
+  } = useContext(WordsContext);
   const { isGameOver, setIsGameOver, isTimeOut } = useContext(GameStateContext);
-
-  const [substring, setSubstring] = useState(currentWord);
 
   useEffect(() => {
     if (currentWord && !isGameOver && !isTimeOut) {
@@ -18,8 +22,8 @@ export default function useKeypress(callback) {
           // if it's the last character and the right letter...
           if (e.key === substring[0] && substring.length === 1) {
             setSubstring(null);
-            setToHighlight(toHighlight + e.key);
             setToHighlight('');
+            setToHighlight(toHighlight + e.key);
             setScore(score + 10);
             callback();
             // elif it's the right letter...
@@ -53,6 +57,7 @@ export default function useKeypress(callback) {
   }, [
     currentWord,
     substring,
+    setSubstring,
     callback,
     toHighlight,
     setToHighlight,

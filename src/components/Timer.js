@@ -6,7 +6,13 @@ import { GameStateContext } from '../context/GameStateContext';
 
 const Countdown = () => {
   const { setScore } = useContext(ScoreContext);
-  const { wordArray, currentWord, setCurrentWord } = useContext(WordsContext);
+  const {
+    wordArray,
+    currentWord,
+    setCurrentWord,
+    setSubstring,
+    setToHighlight,
+  } = useContext(WordsContext);
   const { setIsGameOver, isTimeOut, setIsTimeOut } = useContext(
     GameStateContext
   );
@@ -46,6 +52,8 @@ const Countdown = () => {
                     setCurrentWord(
                       wordArray[wordArray.indexOf(currentWord) + 1]
                     );
+                    setSubstring(wordArray[wordArray.indexOf(currentWord) + 1]);
+                    setToHighlight('');
                   }}
                 >
                   Reset
