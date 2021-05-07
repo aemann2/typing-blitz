@@ -2,10 +2,15 @@ import { useContext } from 'react';
 import Timer from 'react-compound-timer';
 import { ScoreContext } from '../context/ScoreContext';
 import { WordsContext } from '../context/WordsContext';
+import { GameStateContext } from '../context/GameStateContext';
 
-const Countdown = ({ setIsGameOver, isTimeOut, setIsTimeOut }) => {
+const Countdown = () => {
   const { setScore } = useContext(ScoreContext);
   const { wordArray, currentWord, setCurrentWord } = useContext(WordsContext);
+  const { setIsGameOver, isTimeOut, setIsTimeOut } = useContext(
+    GameStateContext
+  );
+
   return (
     <div>
       <Timer

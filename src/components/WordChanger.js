@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { WordsContext } from '../context/WordsContext';
 import fetchArray from '../utils/fetchArray';
 import useKeypress from '../hooks/useKeypress';
 import { Highlight } from 'react-highlight-regex';
 
-const WordChanger = ({ isGameOver, setIsGameOver, isTimeOut }) => {
-  const { wordArray, setWordArray, currentWord, setCurrentWord } = useContext(
-    WordsContext
-  );
-  const [toHighlight, setToHighlight] = useState('');
+const WordChanger = () => {
+  const {
+    wordArray,
+    setWordArray,
+    currentWord,
+    setCurrentWord,
+    toHighlight,
+  } = useContext(WordsContext);
+
   let regex = null;
 
   useEffect(() => {
@@ -24,15 +28,7 @@ const WordChanger = ({ isGameOver, setIsGameOver, isTimeOut }) => {
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
-  useKeypress(
-    currentWord,
-    changeWord,
-    toHighlight,
-    setToHighlight,
-    isGameOver,
-    setIsGameOver,
-    isTimeOut
-  );
+  useKeypress(changeWord);
 
   if (toHighlight) {
     regex = new RegExp(toHighlight);

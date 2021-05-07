@@ -5,10 +5,18 @@ export const WordsContext = createContext();
 const WordsContextProvider = (props) => {
   const [wordArray, setWordArray] = useState([]);
   const [currentWord, setCurrentWord] = useState(null);
+  const [toHighlight, setToHighlight] = useState('');
 
   return (
     <WordsContext.Provider
-      value={{ wordArray, setWordArray, currentWord, setCurrentWord }}
+      value={{
+        wordArray,
+        setWordArray,
+        currentWord,
+        setCurrentWord,
+        toHighlight,
+        setToHighlight,
+      }}
     >
       {props.children}
     </WordsContext.Provider>

@@ -1,18 +1,15 @@
 import { useEffect, useState, useContext } from 'react';
+import { WordsContext } from '../context/WordsContext';
 import { ScoreContext } from '../context/ScoreContext';
+import { GameStateContext } from '../context/GameStateContext';
 
-export default function useKeypress(
-  currentWord,
-  callback,
-  toHighlight,
-  setToHighlight,
-  isGameOver,
-  setIsGameOver,
-  isTimeOut
-) {
+export default function useKeypress(callback) {
+  const { score, setScore } = useContext(ScoreContext);
+  const { currentWord, toHighlight, setToHighlight } = useContext(WordsContext);
+  const { isGameOver, setIsGameOver, isTimeOut } = useContext(GameStateContext);
+
   const [substring, setSubstring] = useState(currentWord);
 
-  const { score, setScore } = useContext(ScoreContext);
   useEffect(() => {
     if (currentWord && !isGameOver && !isTimeOut) {
       function onKeydown(e) {
