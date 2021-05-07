@@ -1,10 +1,10 @@
 import Timer from 'react-compound-timer';
 
-const Countdown = ({ setIsGameOver }) => {
+const Countdown = ({ setIsGameOver, isTimeOut, setIsTimeOut }) => {
   return (
     <div>
       <Timer
-        initialTime={60000}
+        initialTime={5000}
         startImmediately={false}
         lastUnit='s'
         direction='backward'
@@ -12,17 +12,40 @@ const Countdown = ({ setIsGameOver }) => {
         checkpoints={[
           {
             time: 0,
-            callback: () => setIsGameOver(true),
+            callback: () => {
+              setIsGameOver(true);
+              setIsTimeOut(true);
+            },
           },
         ]}
       >
-        {({ start }) => (
+        {({ start, reset }) => (
           <>
             <div>
               <Timer.Seconds />
             </div>
             <div>
-              <button onClick={start}>Start</button>
+              {isTimeOut ? (
+                <button
+                  onClick={() => {
+                    reset();
+                    start();
+                    setIsGameOver(false);
+                    setIsTimeOut(false);
+                  }}
+                >
+                  Reset
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    start();
+                    setIsGameOver(false);
+                  }}
+                >
+                  Start
+                </button>
+              )}
             </div>
           </>
         )}

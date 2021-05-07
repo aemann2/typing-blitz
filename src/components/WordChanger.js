@@ -4,7 +4,7 @@ import fetchArray from '../utils/fetchArray';
 import useKeypress from '../hooks/useKeypress';
 import { Highlight } from 'react-highlight-regex';
 
-const WordChanger = () => {
+const WordChanger = ({ isGameOver, setIsGameOver, isTimeOut }) => {
   const { wordArray, setWordArray, currentWord, setCurrentWord } = useContext(
     WordsContext
   );
@@ -24,7 +24,15 @@ const WordChanger = () => {
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
-  useKeypress(currentWord, changeWord, toHighlight, setToHighlight);
+  useKeypress(
+    currentWord,
+    changeWord,
+    toHighlight,
+    setToHighlight,
+    isGameOver,
+    setIsGameOver,
+    isTimeOut
+  );
 
   if (toHighlight) {
     regex = new RegExp(toHighlight);

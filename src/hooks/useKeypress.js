@@ -5,14 +5,16 @@ export default function useKeypress(
   currentWord,
   callback,
   toHighlight,
-  setToHighlight
+  setToHighlight,
+  isGameOver,
+  setIsGameOver,
+  isTimeOut
 ) {
   const [substring, setSubstring] = useState(currentWord);
 
   const { score, setScore } = useContext(ScoreContext);
-
   useEffect(() => {
-    if (currentWord) {
+    if (currentWord && !isGameOver && !isTimeOut) {
       function onKeydown(e) {
         // if a substring has been created (after a first character has been typed)
         if (substring) {
@@ -59,5 +61,8 @@ export default function useKeypress(
     setToHighlight,
     score,
     setScore,
+    isGameOver,
+    setIsGameOver,
+    isTimeOut,
   ]);
 }
