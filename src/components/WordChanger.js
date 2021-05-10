@@ -1,10 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import { WordsContext } from '../context/WordsContext';
 import { GameStateContext } from '../context/GameStateContext';
-import * as Helper from '../utils/helpers';
 import fetchArray from '../utils/fetchArray';
 import useKeypress from '../hooks/useKeypress';
-import { Highlight } from 'react-highlight-regex';
+import Highlighter from './Highlighter';
 
 const WordChanger = () => {
   const {
@@ -12,14 +11,10 @@ const WordChanger = () => {
     setWordArray,
     currentWord,
     setCurrentWord,
-    toHighlight,
-    setToHighlight,
     substring,
     setSubstring,
   } = useContext(WordsContext);
   const { isGameOver, isTimeOut } = useContext(GameStateContext);
-
-  let regex = null;
 
   useEffect(() => {
     fetchArray(setWordArray);
@@ -34,46 +29,28 @@ const WordChanger = () => {
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
-  // const setSubstringAndHighlight = (e) => {
-  //   setSubstring(substring.slice(1, currentWord.length));
-  //   setToHighlight(toHighlight + e.key);
-  // };
-
-  const resetSubstringAndHighlight = () => {
-    setSubstring(null);
-    setToHighlight('');
-  };
-
-  if (toHighlight) {
-    regex = new RegExp(toHighlight);
-  }
-
   useKeypress((e) => {
     if (currentWord && !isGameOver && !isTimeOut) {
       // if a substring has been created (after a first character has been typed)
       if (substring) {
         // if it's the last character and the right letter...
         if (e.key === substring[0] && substring.length === 1) {
-          resetSubstringAndHighlight();
+          setSubstring(null);
           changeCurrentWord();
           // elif it's the right letter...
         } else if (e.key === substring[0]) {
-          // setSubstringAndHighlight(e);
           setSubstring(substring.slice(1, currentWord.length));
-          setToHighlight(toHighlight + e.key);
           // if it's the wrong letter
         } else {
-          resetSubstringAndHighlight();
+          setSubstring(null);
           changeCurrentWord();
         }
       } else if (e.key === currentWord[0]) {
-        // if it's the right character of the first letter, set the substring and highlight
+        // if it's the right character of the first letter, set the substring
         setSubstring(currentWord.slice(1, currentWord.length));
-        setToHighlight(toHighlight + e.key);
-        // setSubstringAndHighlight(e);
       } else {
         //otherwise, switch the word out
-        resetSubstringAndHighlight();
+        setSubstring(null);
         changeCurrentWord();
       }
     }
@@ -81,13 +58,7 @@ const WordChanger = () => {
 
   return (
     <main>
-      {regex ? (
-        <h1>
-          <Highlight match={regex} text={currentWord} />
-        </h1>
-      ) : (
-        <h1>{currentWord}</h1>
-      )}
+      <Highlighter />
     </main>
   );
 };

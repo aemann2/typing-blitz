@@ -44,6 +44,7 @@ const Countdown = () => {
               {isTimeOut ? (
                 <button
                   onClick={() => {
+                    // Resetting the timer and the game state //
                     reset();
                     start();
                     setIsGameOver(false);
