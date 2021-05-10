@@ -11,23 +11,10 @@ const Score = () => {
 
   useKeypress((e) => {
     if (currentWord && !isGameOver && !isTimeOut) {
-      // if a substring has been created (after a first character has been typed)
-      if (substring) {
-        // if it's the last character and the right letter...
-        if (e.key === substring[0] && substring.length === 1) {
-          setScore(score + 10);
-          // elif it's the right letter...
-        } else if (e.key === substring[0]) {
-          setScore(score + 10);
-          // if it's the wrong letter
-        } else {
-          setScore(score - 10);
-        }
-      } else if (e.key === currentWord[0]) {
-        // if it's the right character of the first letter, set the substring and highlight
+      // if the key is the first letter of the current word, or if the substring exists and the key is the first letter...
+      if (e.key === currentWord[0] || (substring && e.key === substring[0])) {
         setScore(score + 10);
       } else {
-        //otherwise, switch the word out
         setScore(score - 10);
       }
     }
