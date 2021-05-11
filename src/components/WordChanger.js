@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import { WordsContext } from '../context/WordsContext';
 import { GameStateContext } from '../context/GameStateContext';
-import fetchArray from '../utils/fetchArray';
 import useKeypress from '../hooks/useKeypress';
 import Highlighter from './Highlighter';
+import generateWords from '../utils/randomWords';
 
 const WordChanger = () => {
   const {
@@ -17,7 +17,7 @@ const WordChanger = () => {
   const { isTimeOut } = useContext(GameStateContext);
 
   useEffect(() => {
-    fetchArray(setWordArray);
+    setWordArray(generateWords('medium'));
   }, [setWordArray]);
 
   useEffect(() => {
