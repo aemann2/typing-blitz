@@ -3,13 +3,10 @@ import React, { createContext, useState } from 'react';
 export const GameStateContext = createContext();
 
 const GameStateContextProvider = (props) => {
-  const [isGameOver, setIsGameOver] = useState(true);
-  const [isTimeOut, setIsTimeOut] = useState(false);
+  const [isTimeOut, setIsTimeOut] = useState(true);
 
   return (
-    <GameStateContext.Provider
-      value={{ isGameOver, setIsGameOver, isTimeOut, setIsTimeOut }}
-    >
+    <GameStateContext.Provider value={{ isTimeOut, setIsTimeOut }}>
       {props.children}
     </GameStateContext.Provider>
   );

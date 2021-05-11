@@ -13,9 +13,7 @@ const Countdown = () => {
     setSubstring,
     setToHighlight,
   } = useContext(WordsContext);
-  const { setIsGameOver, isTimeOut, setIsTimeOut } = useContext(
-    GameStateContext
-  );
+  const { isTimeOut, setIsTimeOut } = useContext(GameStateContext);
 
   return (
     <div>
@@ -29,7 +27,7 @@ const Countdown = () => {
           {
             time: 0,
             callback: () => {
-              setIsGameOver(true);
+              // setIsGameOver(true);
               setIsTimeOut(true);
             },
           },
@@ -41,13 +39,13 @@ const Countdown = () => {
               <Timer.Seconds />
             </div>
             <div>
-              {isTimeOut ? (
+              {!isTimeOut ? (
                 <button
                   onClick={() => {
                     // Resetting the timer and the game state //
                     reset();
                     start();
-                    setIsGameOver(false);
+                    // setIsGameOver(false);
                     setIsTimeOut(false);
                     setScore(0);
                     setCurrentWord(
@@ -63,7 +61,7 @@ const Countdown = () => {
                 <button
                   onClick={() => {
                     start();
-                    setIsGameOver(false);
+                    setIsTimeOut(false);
                   }}
                 >
                   Start

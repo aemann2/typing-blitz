@@ -14,7 +14,7 @@ const WordChanger = () => {
     substring,
     setSubstring,
   } = useContext(WordsContext);
-  const { isGameOver, isTimeOut } = useContext(GameStateContext);
+  const { isTimeOut } = useContext(GameStateContext);
 
   useEffect(() => {
     fetchArray(setWordArray);
@@ -30,7 +30,7 @@ const WordChanger = () => {
   };
 
   useKeypress((e) => {
-    if (currentWord && !isGameOver && !isTimeOut) {
+    if (currentWord && !isTimeOut) {
       // if a substring has been created (after a first character has been typed)
       if (substring) {
         // if it's the last character and the right letter...

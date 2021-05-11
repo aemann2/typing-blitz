@@ -7,10 +7,10 @@ import useKeypress from '../hooks/useKeypress';
 const Score = () => {
   const { score, setScore } = useContext(ScoreContext);
   const { currentWord, substring } = useContext(WordsContext);
-  const { isGameOver, isTimeOut } = useContext(GameStateContext);
+  const { isTimeOut } = useContext(GameStateContext);
 
   useKeypress((e) => {
-    if (currentWord && !isGameOver && !isTimeOut) {
+    if (currentWord && !isTimeOut) {
       // if the key is the first letter of the current word, or if the substring exists and the key is the first letter...
       if (e.key === currentWord[0] || (substring && e.key === substring[0])) {
         setScore(score + 10);

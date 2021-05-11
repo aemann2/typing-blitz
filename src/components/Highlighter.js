@@ -5,11 +5,10 @@ import { GameStateContext } from '../context/GameStateContext';
 import { Highlight } from 'react-highlight-regex';
 
 const Highlighter = () => {
-  const { currentWord, toHighlight, setToHighlight, substring } = useContext(
-    WordsContext
-  );
+  const { currentWord, toHighlight, setToHighlight, substring } =
+    useContext(WordsContext);
 
-  const { isGameOver, isTimeOut } = useContext(GameStateContext);
+  const { isTimeOut } = useContext(GameStateContext);
 
   let regex = null;
 
@@ -18,7 +17,7 @@ const Highlighter = () => {
   }
 
   useKeypress((e) => {
-    if (currentWord && !isGameOver && !isTimeOut) {
+    if (currentWord && !isTimeOut) {
       // if a substring has been created (after a first character has been typed)
       if (substring) {
         // if it's the last character and the right letter...
