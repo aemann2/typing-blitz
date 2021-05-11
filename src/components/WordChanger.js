@@ -25,6 +25,7 @@ const WordChanger = () => {
   }, [wordArray, setCurrentWord]);
 
   const changeCurrentWord = () => {
+    setSubstring(null);
     const wordIndex = wordArray.indexOf(currentWord);
     setCurrentWord(wordArray[wordIndex + 1]);
   };
@@ -35,14 +36,12 @@ const WordChanger = () => {
       if (substring) {
         // if it's the last character and the right letter...
         if (e.key === substring[0] && substring.length === 1) {
-          setSubstring(null);
           changeCurrentWord();
           // elif it's the right letter...
         } else if (e.key === substring[0]) {
           setSubstring(substring.slice(1, currentWord.length));
           // if it's the wrong letter
         } else {
-          setSubstring(null);
           changeCurrentWord();
         }
       } else if (e.key === currentWord[0]) {
@@ -50,7 +49,6 @@ const WordChanger = () => {
         setSubstring(currentWord.slice(1, currentWord.length));
       } else {
         //otherwise, switch the word out
-        setSubstring(null);
         changeCurrentWord();
       }
     }

@@ -18,7 +18,7 @@ const Countdown = () => {
   return (
     <div>
       <Timer
-        initialTime={5000}
+        initialTime={10000}
         startImmediately={false}
         lastUnit='s'
         direction='backward'
@@ -27,7 +27,6 @@ const Countdown = () => {
           {
             time: 0,
             callback: () => {
-              // setIsGameOver(true);
               setIsTimeOut(true);
             },
           },
@@ -45,7 +44,6 @@ const Countdown = () => {
                     // Resetting the timer and the game state //
                     reset();
                     start();
-                    // setIsGameOver(false);
                     setIsTimeOut(false);
                     setScore(0);
                     setCurrentWord(
