@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { WordsContext } from '../context/WordsContext';
+import classes from './css/WordPreview.module.css';
+import { WordsContext } from '../../context/WordsContext';
 
 const WordPreview = () => {
   const { wordArray, currentWord } = useContext(WordsContext);

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "Highlighter.module.scss"
+    ],
+    "names": [],
+    "file": "Highlighter.module.css"
+}

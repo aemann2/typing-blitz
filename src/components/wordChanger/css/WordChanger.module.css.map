@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "WordChanger.module.scss"
+    ],
+    "names": [],
+    "file": "WordChanger.module.css"
+}

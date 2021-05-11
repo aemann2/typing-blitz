@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import useKeypress from '../hooks/useKeypress';
-import { WordsContext } from '../context/WordsContext';
-import { GameStateContext } from '../context/GameStateContext';
+import classes from './css/Highlighter.module.css';
+import useKeypress from '../../hooks/useKeypress';
+import { WordsContext } from '../../context/WordsContext';
+import { GameStateContext } from '../../context/GameStateContext';
 import { Highlight } from 'react-highlight-regex';
 
 const Highlighter = () => {

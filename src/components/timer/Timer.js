@@ -1,8 +1,9 @@
 import { useContext } from 'react';
+import classes from './css/Timer.module.css';
 import Timer from 'react-compound-timer';
-import { ScoreContext } from '../context/ScoreContext';
-import { WordsContext } from '../context/WordsContext';
-import { GameStateContext } from '../context/GameStateContext';
+import { ScoreContext } from '../../context/ScoreContext';
+import { WordsContext } from '../../context/WordsContext';
+import { GameStateContext } from '../../context/GameStateContext';
 
 const Countdown = () => {
   const { setScore } = useContext(ScoreContext);

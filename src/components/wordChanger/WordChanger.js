@@ -1,9 +1,10 @@
 import React, { useEffect, useContext } from 'react';
-import { WordsContext } from '../context/WordsContext';
-import { GameStateContext } from '../context/GameStateContext';
-import useKeypress from '../hooks/useKeypress';
-import Highlighter from './Highlighter';
-import generateWords from '../utils/randomWords';
+import classes from './css/WordChanger.module.css';
+import { WordsContext } from '../../context/WordsContext';
+import { GameStateContext } from '../../context/GameStateContext';
+import useKeypress from '../../hooks/useKeypress';
+import Highlighter from '../highlighter/Highlighter';
+import generateWords from '../../utils/randomWords';
 
 const WordChanger = () => {
   const {

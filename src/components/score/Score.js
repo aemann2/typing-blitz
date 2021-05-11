@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { ScoreContext } from '../context/ScoreContext';
-import { WordsContext } from '../context/WordsContext';
-import { GameStateContext } from '../context/GameStateContext';
-import useKeypress from '../hooks/useKeypress';
+import classes from './css/Score.module.css';
+import { ScoreContext } from '../../context/ScoreContext';
+import { WordsContext } from '../../context/WordsContext';
+import { GameStateContext } from '../../context/GameStateContext';
+import useKeypress from '../../hooks/useKeypress';
 
 const Score = () => {
   const { score, setScore } = useContext(ScoreContext);
@@ -22,7 +23,7 @@ const Score = () => {
 
   return (
     <>
-      <h2>Score:{score} </h2>
+      <h2 className={classes.score}>Score:{score} </h2>
     </>
   );
 };

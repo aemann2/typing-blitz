@@ -1,8 +1,8 @@
 import './App.css';
-import Score from './components/Score';
-import Countdown from './components/Timer';
-import WordChanger from './components/WordChanger';
-import WordPreview from './components/WordPreview';
+import Score from './components/score/Score';
+import Countdown from './components/timer/Timer';
+import WordChanger from './components/wordChanger/WordChanger';
+import WordPreview from './components/wordPreview/WordPreview';
 // import Restart from './components/Restart';
 import GameStateContextProvider from './context/GameStateContext';
 import WordsContextProvider from './context/WordsContext';
