@@ -1,8 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import { WordsContext } from '../context/WordsContext';
+import { GameStateContext } from '../context/GameStateContext';
 import fetchArray from '../utils/fetchArray';
 import useKeypress from '../hooks/useKeypress';
-import { Highlight } from 'react-highlight-regex';
+import Highlighter from './Highlighter';
 
 const WordChanger = () => {
   const {
@@ -10,10 +11,10 @@ const WordChanger = () => {
     setWordArray,
     currentWord,
     setCurrentWord,
-    toHighlight,
+    substring,
+    setSubstring,
   } = useContext(WordsContext);
-
-  let regex = null;
+  const { isTimeOut } = useContext(GameStateContext);
 
   useEffect(() => {
     fetchArray(setWordArray);
@@ -23,26 +24,39 @@ const WordChanger = () => {
     setCurrentWord(wordArray[0]);
   }, [wordArray, setCurrentWord]);
 
-  const changeWord = () => {
+  const changeCurrentWord = () => {
+    setSubstring(null);
     const wordIndex = wordArray.indexOf(currentWord);
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
-  useKeypress(changeWord);
-
-  if (toHighlight) {
-    regex = new RegExp(toHighlight);
-  }
+  useKeypress((e) => {
+    if (currentWord && !isTimeOut) {
+      // if a substring has been created (after a first character has been typed)
+      if (substring) {
+        // if it's the last character and the right letter...
+        if (e.key === substring[0] && substring.length === 1) {
+          changeCurrentWord();
+          // elif it's the right letter...
+        } else if (e.key === substring[0]) {
+          setSubstring(substring.slice(1, currentWord.length));
+          // if it's the wrong letter
+        } else {
+          changeCurrentWord();
+        }
+      } else if (e.key === currentWord[0]) {
+        // if it's the right character of the first letter, set the substring
+        setSubstring(currentWord.slice(1, currentWord.length));
+      } else {
+        //otherwise, switch the word out
+        changeCurrentWord();
+      }
+    }
+  });
 
   return (
     <main>
-      {regex ? (
-        <h1>
-          <Highlight match={regex} text={currentWord} />
-        </h1>
-      ) : (
-        <h1>{currentWord}</h1>
-      )}
+      <Highlighter />
     </main>
   );
 };

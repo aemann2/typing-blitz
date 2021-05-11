@@ -6,6 +6,7 @@ const WordsContextProvider = (props) => {
   const [wordArray, setWordArray] = useState([]);
   const [currentWord, setCurrentWord] = useState(null);
   const [toHighlight, setToHighlight] = useState('');
+  const [substring, setSubstring] = useState(currentWord);
 
   return (
     <WordsContext.Provider
@@ -16,6 +17,8 @@ const WordsContextProvider = (props) => {
         setCurrentWord,
         toHighlight,
         setToHighlight,
+        substring,
+        setSubstring,
       }}
     >
       {props.children}
