@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import classes from './css/Timer.module.css';
 import Timer from 'react-compound-timer';
 import { ScoreContext } from '../../context/ScoreContext';
@@ -16,6 +16,14 @@ const Countdown = () => {
   } = useContext(WordsContext);
   const { isTimeOut, setIsTimeOut, setShowPopup } =
     useContext(GameStateContext);
+
+  const button = useRef(null);
+
+  useEffect(() => {
+    if (button.current) {
+      button.current.focus();
+    }
+  }, [isTimeOut]);
 
   return (
     <div>
@@ -43,6 +51,7 @@ const Countdown = () => {
             <div>
               {isTimeOut && (
                 <button
+                  ref={button}
                   onClick={() => {
                     // Resetting the timer and the game state //
                     reset();
@@ -55,6 +64,7 @@ const Countdown = () => {
                     setSubstring(wordArray[wordArray.indexOf(currentWord) + 1]);
                     setToHighlight('');
                   }}
+                  type='button'
                 >
                   Start
                 </button>

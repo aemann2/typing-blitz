@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { ScoreContext } from '../../context/ScoreContext';
@@ -10,12 +10,20 @@ const Popup = () => {
   const { score, setScore } = useContext(ScoreContext);
   const { currentWord, wordArray, setCurrentWord } = useContext(WordsContext);
 
+  const button = useRef(null);
+
   const handleClose = () => {
     setShowPopup(false);
     const wordIndex = wordArray.indexOf(currentWord);
     setCurrentWord(wordArray[wordIndex + 1]);
     setScore(0);
   };
+
+  useEffect(() => {
+    if (button.current) {
+      button.current.focus();
+    }
+  }, [showPopup]);
 
   return (
     <>
@@ -31,7 +39,7 @@ const Popup = () => {
         </Modal.Header>
         <Modal.Body>Score: {score}</Modal.Body>
         <Modal.Footer>
-          <Button variant='primary' onClick={handleClose}>
+          <Button variant='primary' ref={button} onClick={handleClose}>
             Play Again
           </Button>
         </Modal.Footer>
