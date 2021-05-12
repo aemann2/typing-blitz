@@ -4,6 +4,7 @@ import Countdown from './components/timer/Timer';
 import WordChanger from './components/wordChanger/WordChanger';
 import WordPreview from './components/wordPreview/WordPreview';
 import Difficulty from './components/difficulty/Difficulty';
+import Popup from './components/popup/Popup';
 // import Restart from './components/Restart';
 import GameStateContextProvider from './context/GameStateContext';
 import WordsContextProvider from './context/WordsContext';
@@ -26,6 +27,7 @@ function App() {
             />
           )} */}
             <Difficulty />
+            <Popup />
           </ScoreContextProvider>
         </WordsContextProvider>
       </GameStateContextProvider>
