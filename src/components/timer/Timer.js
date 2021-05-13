@@ -58,10 +58,7 @@ const Countdown = () => {
                     start();
                     setIsTimeOut(false);
                     setScore(0);
-                    setCurrentWord(
-                      wordArray[wordArray.indexOf(currentWord) + 1]
-                    );
-                    setSubstring(wordArray[wordArray.indexOf(currentWord) + 1]);
+                    setSubstring('');
                     setToHighlight('');
                   }}
                   type='button'
