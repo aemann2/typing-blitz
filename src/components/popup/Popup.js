@@ -19,6 +19,7 @@ const Popup = () => {
     setScore(0);
   };
 
+  // setting modal button autofocus on showPopup state change
   useEffect(() => {
     if (button.current) {
       button.current.focus();
