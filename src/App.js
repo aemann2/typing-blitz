@@ -5,7 +5,6 @@ import WordChanger from './components/wordChanger/WordChanger';
 import WordPreview from './components/wordPreview/WordPreview';
 import Difficulty from './components/difficulty/Difficulty';
 import Popup from './components/popup/Popup';
-// import Restart from './components/Restart';
 import GameStateContextProvider from './context/GameStateContext';
 import WordsContextProvider from './context/WordsContext';
 import ScoreContextProvider from './context/ScoreContext';
@@ -20,12 +19,6 @@ function App() {
             <Countdown />
             <WordChanger />
             <WordPreview />
-            {/* {isTimeOut && (
-            <Restart
-              setIsTimeOut={setIsTimeOut}
-              setIsGameOver={setIsGameOver}
-            />
-          )} */}
             <Difficulty />
             <Popup />
           </ScoreContextProvider>

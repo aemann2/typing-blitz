@@ -7,13 +7,7 @@ import { GameStateContext } from '../../context/GameStateContext';
 
 const Countdown = () => {
   const { setScore } = useContext(ScoreContext);
-  const {
-    wordArray,
-    currentWord,
-    setCurrentWord,
-    setSubstring,
-    setToHighlight,
-  } = useContext(WordsContext);
+  const { setSubstring, setToHighlight } = useContext(WordsContext);
   const { isTimeOut, setIsTimeOut, setShowPopup } =
     useContext(GameStateContext);
 
