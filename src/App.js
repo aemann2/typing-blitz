@@ -5,25 +5,19 @@ import WordChanger from './components/wordChanger/WordChanger';
 import WordPreview from './components/wordPreview/WordPreview';
 import Difficulty from './components/difficulty/Difficulty';
 import Popup from './components/popup/Popup';
-import GameStateContextProvider from './context/GameStateContext';
-import WordsContextProvider from './context/WordsContext';
-import ScoreContextProvider from './context/ScoreContext';
+import { CombinedContextProvider } from './context/CombinedContextProvider';
 
 function App() {
   return (
     <div className='app'>
-      <GameStateContextProvider>
-        <WordsContextProvider>
-          <ScoreContextProvider>
-            <Score />
-            <Countdown />
-            <WordChanger />
-            <WordPreview />
-            <Difficulty />
-            <Popup />
-          </ScoreContextProvider>
-        </WordsContextProvider>
-      </GameStateContextProvider>
+      <CombinedContextProvider>
+        <Score />
+        <Countdown />
+        <WordChanger />
+        <WordPreview />
+        <Difficulty />
+        <Popup />
+      </CombinedContextProvider>
     </div>
   );
 }
