@@ -22,7 +22,7 @@ const Countdown = () => {
   return (
     <div>
       <Timer
-        initialTime={3000}
+        initialTime={30000}
         startImmediately={false}
         lastUnit='s'
         direction='backward'
