@@ -2,7 +2,7 @@ import GameStateContextProvider from './GameStateContext';
 import WordsContextProvider from './WordsContext';
 import ScoreContextProvider from './ScoreContext';
 
-import { combineComponents } from '../utils/combineComponents';
+import combineComponents from '../utils/combineComponents';
 
 const providers = [
   GameStateContextProvider,
@@ -10,4 +10,6 @@ const providers = [
   ScoreContextProvider,
 ];
 
-export const CombinedContextProvider = combineComponents(...providers);
+const CombinedContextProvider = combineComponents(...providers);
+
+export default CombinedContextProvider;

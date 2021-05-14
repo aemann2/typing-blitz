@@ -5,7 +5,7 @@ import WordChanger from './components/wordChanger/WordChanger';
 import WordPreview from './components/wordPreview/WordPreview';
 import Difficulty from './components/difficulty/Difficulty';
 import Popup from './components/popup/Popup';
-import { CombinedContextProvider } from './context/CombinedContextProvider';
+import CombinedContextProvider from './context/CombinedContextProvider';
 
 function App() {
   return (

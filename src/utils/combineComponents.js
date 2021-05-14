@@ -1,7 +1,7 @@
 // function to combine multiple contexts into one. adapted from:
 // https://medium.com/nerd-for-tech/how-to-combine-context-providers-for-cleaner-react-code-9ed24f20225e
 
-export const combineComponents = (...components) => {
+const combineComponents = (...components) => {
   return components.reduce(
     (AccumulatedComponents, CurrentComponent) => {
       return ({ children }) => {
@@ -15,3 +15,5 @@ export const combineComponents = (...components) => {
     ({ children }) => <>{children}</>
   );
 };
+
+export default combineComponents;
