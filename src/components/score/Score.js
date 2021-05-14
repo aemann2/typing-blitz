@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import classes from './css/Score.module.css';
 import { ScoreContext } from '../../context/ScoreContext';
 import { WordsContext } from '../../context/WordsContext';
@@ -7,16 +7,33 @@ import useKeypress from '../../hooks/useKeypress';
 
 const Score = () => {
   const { score, setScore } = useContext(ScoreContext);
-  const { currentWord, substring } = useContext(WordsContext);
+  const { currentWord } = useContext(WordsContext);
   const { isTimeOut } = useContext(GameStateContext);
+
+  const countRef = useRef(-1);
+
+  const counter = () => {
+    countRef.current = countRef.current + 1;
+    console.log(countRef.current);
+    return countRef.current;
+  };
 
   useKeypress((e) => {
     if (currentWord && !isTimeOut) {
-      // if the key is the first letter of the current word, or if the substring exists and the key is the first letter...
-      if (e.key === currentWord[0] || (substring && e.key === substring[0])) {
+      let i = counter();
+      if (e.key === currentWord[i]) {
         setScore(score + 10);
+        if (i === currentWord.length - 1) {
+          if (e.key === currentWord[i]) {
+            setScore(score + 10);
+          } else {
+            setScore(score - 10);
+          }
+          countRef.current = -1;
+        }
       } else {
         setScore(score - 10);
+        countRef.current = -1;
       }
     }
   });

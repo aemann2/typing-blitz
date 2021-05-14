@@ -37,8 +37,7 @@ const WordChanger = () => {
       if (e.key !== currentWord[i]) {
         changeCurrentWord();
         countRef.current = -1;
-      }
-      if (i === currentWord.length - 1) {
+      } else if (i === currentWord.length - 1) {
         changeCurrentWord();
         countRef.current = -1;
       }
