@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import classes from './css/WordChanger.module.css';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
@@ -7,15 +7,11 @@ import Highlighter from '../highlighter/Highlighter';
 import generateWords from '../../utils/randomWords';
 
 const WordChanger = () => {
-  const {
-    wordArray,
-    setWordArray,
-    currentWord,
-    setCurrentWord,
-    substring,
-    setSubstring,
-  } = useContext(WordsContext);
+  const { wordArray, setWordArray, currentWord, setCurrentWord } =
+    useContext(WordsContext);
   const { isTimeOut, difficulty } = useContext(GameStateContext);
+
+  const countRef = useRef(-1);
 
   useEffect(() => {
     setWordArray(generateWords(difficulty));
@@ -26,31 +22,25 @@ const WordChanger = () => {
   }, [wordArray, setCurrentWord]);
 
   const changeCurrentWord = () => {
-    setSubstring(null);
     const wordIndex = wordArray.indexOf(currentWord);
     setCurrentWord(wordArray[wordIndex + 1]);
   };
 
+  const counter = () => {
+    countRef.current = countRef.current + 1;
+    return countRef.current;
+  };
+
   useKeypress((e) => {
+    let i = counter();
     if (currentWord && !isTimeOut) {
-      // if a substring has been created (after a first character has been typed)
-      if (substring) {
-        // if it's the last character and the right letter...
-        if (e.key === substring[0] && substring.length === 1) {
-          changeCurrentWord();
-          // elif it's the right letter...
-        } else if (e.key === substring[0]) {
-          setSubstring(substring.slice(1, currentWord.length));
-          // if it's the wrong letter
-        } else {
-          changeCurrentWord();
-        }
-      } else if (e.key === currentWord[0]) {
-        // if it's the right character of the first letter, set the substring
-        setSubstring(currentWord.slice(1, currentWord.length));
-      } else {
-        //otherwise, switch the word out
+      if (e.key !== currentWord[i]) {
         changeCurrentWord();
+        countRef.current = -1;
+      }
+      if (i === currentWord.length - 1) {
+        changeCurrentWord();
+        countRef.current = -1;
       }
     }
   });
