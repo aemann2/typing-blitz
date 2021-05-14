@@ -7,8 +7,8 @@ const WordPreview = () => {
   const currentWordIndex = wordArray.indexOf(currentWord);
   return (
     <div>
-      <h1>{wordArray[currentWordIndex + 1]}</h1>
-      <h1>{wordArray[currentWordIndex + 2]}</h1>
+      <h2>{wordArray[currentWordIndex + 1]}</h2>
+      <h3>{wordArray[currentWordIndex + 2]}</h3>
     </div>
   );
 };
