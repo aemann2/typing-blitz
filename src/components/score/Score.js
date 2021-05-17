@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classes from './css/Score.module.css';
+import classes from './css/Score.module.scss';
 import { ScoreContext } from '../../context/ScoreContext';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classes from './css/Highlighter.module.css';
+import classes from './css/Highlighter.module.scss';
 import useKeypress from '../../hooks/useKeypress';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
@@ -44,11 +44,11 @@ const Highlighter = () => {
   return (
     <>
       {regex ? (
-        <h1>
+        <h1 className={classes.firstWord}>
           <Highlight match={regex} text={currentWord} />
         </h1>
       ) : (
-        <h1>{currentWord}</h1>
+        <h1 className={classes.firstWord}>{currentWord}</h1>
       )}
     </>
   );

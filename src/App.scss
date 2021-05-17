@@ -1,4 +1,10 @@
-@import '~bootstrap/scss/bootstrap';
+@import 'custom';
+
+// Variables //
+$white: #fffef5;
+$gray-black: #313131;
+$highlight: #ffcb13;
+$red: #ff8484;
 
 /* Globals */
 
@@ -19,13 +25,19 @@ html {
 body {
   min-height: 100vh;
   font-size: 100%;
-  /* temp style */
+  font-family: 'Roboto Mono', monospace;
+  color: $white;
+  background-color: $gray-black;
+}
+
+main {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .highlight {
   background-color: yellow;
 }
+
+// popup:   font-family: 'Rubik', sans-serif !important;

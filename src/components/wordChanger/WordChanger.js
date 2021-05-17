@@ -1,9 +1,10 @@
 import React, { useEffect, useContext } from 'react';
-import classes from './css/WordChanger.module.css';
+import classes from './css/WordChanger.module.scss';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import useKeypress from '../../hooks/useKeypress';
 import Highlighter from '../highlighter/Highlighter';
+import WordPreview from '../wordPreview/WordPreview';
 import generateWords from '../../utils/randomWords';
 
 const WordChanger = () => {
@@ -56,9 +57,10 @@ const WordChanger = () => {
   });
 
   return (
-    <main>
+    <div className={classes.wordList}>
       <Highlighter />
-    </main>
+      <WordPreview />
+    </div>
   );
 };
 

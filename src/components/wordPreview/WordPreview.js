@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classes from './css/WordPreview.module.css';
+import classes from './css/WordPreview.module.scss';
 import { WordsContext } from '../../context/WordsContext';
 
 const WordPreview = () => {
@@ -7,8 +7,8 @@ const WordPreview = () => {
   const currentWordIndex = wordArray.indexOf(currentWord);
   return (
     <div>
-      <h2>{wordArray[currentWordIndex + 1]}</h2>
-      <h3>{wordArray[currentWordIndex + 2]}</h3>
+      <h2 className={classes.secondWord}>{wordArray[currentWordIndex + 1]}</h2>
+      <h3 className={classes.thirdWord}>{wordArray[currentWordIndex + 2]}</h3>
     </div>
   );
 };

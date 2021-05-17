@@ -1,5 +1,5 @@
 import { useContext, useRef, useEffect } from 'react';
-import classes from './css/Timer.module.css';
+import classes from './css/Timer.module.scss';
 import Timer from 'react-compound-timer';
 import { ScoreContext } from '../../context/ScoreContext';
 import { WordsContext } from '../../context/WordsContext';
@@ -39,12 +39,13 @@ const Countdown = () => {
       >
         {({ start, reset }) => (
           <>
-            <div>
+            <div className={classes.timer}>
               <Timer.Seconds />
             </div>
             <div>
               {isTimeOut && (
                 <button
+                  className={classes.timerBtn}
                   ref={button}
                   onClick={() => {
                     // Resetting the timer and the game state //

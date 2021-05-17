@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classes from './css/Difficulty.module.css';
+import classes from './css/Difficulty.module.scss';
 import { GameStateContext } from '../../context/GameStateContext';
 
 const Difficulty = () => {
@@ -10,7 +10,7 @@ const Difficulty = () => {
   };
 
   return (
-    <>
+    <div className={classes}>
       {isTimeOut && (
         <div>
           <button onClick={handleClick} value='easy'>
@@ -24,7 +24,7 @@ const Difficulty = () => {
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
