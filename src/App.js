@@ -11,10 +11,10 @@ function App() {
     <div className='app'>
       <main>
         <CombinedContextProvider>
+          <Score />
           <Countdown />
           <WordChanger />
           <Difficulty />
-          <Score />
           <Popup />
         </CombinedContextProvider>
       </main>
