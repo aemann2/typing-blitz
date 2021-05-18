@@ -21,3 +21,19 @@
     color: $red;
   }
 }
+
+.fadeIn {
+  animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// fade out:
+// https://dev.to/virtualkirill/animate-mounts-and-unmounts-in-react-with-use-animate-presence-1akm
+// https://www.npmjs.com/package/use-animate-presence

@@ -12,7 +12,7 @@ const Difficulty = () => {
   return (
     <>
       {isTimeOut && (
-        <div className={classes.difficulty}>
+        <div className={`${classes.difficulty} ${classes.fadeIn}`}>
           <button className={classes.button} onClick={handleClick} value='easy'>
             easy
           </button>

@@ -33,8 +33,10 @@ const Popup = () => {
         onHide={handleClose}
         backdrop='static'
         keyboard={false}
+        // setting animation to false to avoid findDOMNode error
+        animation={false}
         centered
-        className={classes.modal}
+        className={`${classes.modal} ${classes.fadeIn}`}
       >
         <Modal.Header closeButton>
           <Modal.Title className={classes.title}>Time Up!</Modal.Title>
