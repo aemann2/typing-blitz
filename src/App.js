@@ -13,8 +13,10 @@ function App() {
         <CombinedContextProvider>
           <Score />
           <Countdown />
-          <WordChanger />
-          <Difficulty />
+          <div className='centerWrapper'>
+            <WordChanger />
+            <Difficulty />
+          </div>
           <Popup />
         </CombinedContextProvider>
       </main>

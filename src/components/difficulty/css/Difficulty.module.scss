@@ -1,0 +1,18 @@
+@import '../../../App.scss';
+
+.difficulty {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  align-self: flex-start;
+}
+
+.button {
+  border: 5px solid $highlight;
+  background-color: $gray-black;
+  color: $white;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+}

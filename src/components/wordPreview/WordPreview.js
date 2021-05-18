@@ -6,10 +6,12 @@ const WordPreview = () => {
   const { wordArray, currentWord } = useContext(WordsContext);
   const currentWordIndex = wordArray.indexOf(currentWord);
   return (
-    <div>
+    <>
+      <br />
       <h2 className={classes.secondWord}>{wordArray[currentWordIndex + 1]}</h2>
+      <br />
       <h3 className={classes.thirdWord}>{wordArray[currentWordIndex + 2]}</h3>
-    </div>
+    </>
   );
 };
 

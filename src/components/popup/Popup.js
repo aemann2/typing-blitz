@@ -2,6 +2,7 @@ import { useContext, useRef, useEffect } from 'react';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { ScoreContext } from '../../context/ScoreContext';
+import classes from './css/Popup.module.scss';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -33,11 +34,12 @@ const Popup = () => {
         backdrop='static'
         keyboard={false}
         centered
+        className={classes.modal}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Time Up!</Modal.Title>
+          <Modal.Title className={classes.title}>Time Up!</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Score: {score}</Modal.Body>
+        <Modal.Body className={classes.body}>Score: {score}</Modal.Body>
         <Modal.Footer>
           <Button variant='primary' ref={button} onClick={handleClose}>
             Play Again

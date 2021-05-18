@@ -1,12 +1,4 @@
-// Testing:
-
 .score {
-  position: relative;
-  top: 40%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  text-align: center;
-  text-align: center;
+  order: 2;
   font-size: 7rem;
 }

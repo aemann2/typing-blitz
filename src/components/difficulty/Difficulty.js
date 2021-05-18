@@ -10,21 +10,25 @@ const Difficulty = () => {
   };
 
   return (
-    <div className={classes}>
+    <>
       {isTimeOut && (
-        <div>
-          <button onClick={handleClick} value='easy'>
-            Easy
+        <div className={classes.difficulty}>
+          <button className={classes.button} onClick={handleClick} value='easy'>
+            easy
           </button>
-          <button onClick={handleClick} value='medium'>
-            Medium
+          <button
+            className={classes.button}
+            onClick={handleClick}
+            value='medium'
+          >
+            medium
           </button>
-          <button onClick={handleClick} value='hard'>
-            Hard
+          <button className={classes.button} onClick={handleClick} value='hard'>
+            hard
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
