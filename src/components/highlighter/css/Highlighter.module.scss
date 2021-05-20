@@ -1,4 +1,19 @@
+@import '../../../App.scss';
+
 .firstWord {
   font-size: 8rem;
   display: inline;
 }
+
+.highlight {
+  color: $highlight;
+}
+
+// @keyframes color-change {
+//   0% {
+//     color: $white;
+//   }
+//   100% {
+//     color: $yellow;
+//   }
+// }

@@ -45,7 +45,11 @@ const Highlighter = () => {
     <>
       {regex ? (
         <h1 className={classes.firstWord}>
-          <Highlight match={regex} text={currentWord} />
+          <Highlight
+            match={regex}
+            text={currentWord}
+            highlightClassname={classes.highlight}
+          />
         </h1>
       ) : (
         <h1 className={classes.firstWord}>{currentWord}</h1>

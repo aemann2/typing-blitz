@@ -38,14 +38,15 @@ main {
   justify-content: space-between;
 }
 
+mark {
+  background-color: transparent;
+  padding: 0;
+}
+
 .centerWrapper {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-top: -5%;
   order: 1;
-}
-
-.highlight {
-  background-color: yellow;
 }

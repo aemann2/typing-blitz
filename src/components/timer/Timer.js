@@ -12,6 +12,7 @@ const Countdown = () => {
     useContext(GameStateContext);
 
   const button = useRef(null);
+  const timer = useRef(null);
 
   useEffect(() => {
     if (button.current) {
@@ -22,7 +23,8 @@ const Countdown = () => {
   return (
     <div>
       <Timer
-        initialTime={3000}
+        initialTime={30000}
+        ref={timer}
         startImmediately={false}
         lastUnit='s'
         direction='backward'
@@ -39,7 +41,13 @@ const Countdown = () => {
       >
         {({ start, reset }) => (
           <>
-            <div className={classes.timer}>
+            <div
+              className={
+                timer.current && timer.current.getTime() > 10000
+                  ? classes.timer
+                  : classes.timerLow
+              }
+            >
               <Timer.Seconds />
             </div>
             <div>
