@@ -63,3 +63,20 @@ mark {
     margin-top: 4rem;
   }
 }
+
+// a quick & dirty way of detecting mobile
+@media (hover: none) {
+  main {
+    display: none;
+  }
+  body::after {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5vw;
+    text-align: center;
+    padding: 1rem;
+    content: 'Please use a non-mobile device to play this typing game!';
+  }
+}
