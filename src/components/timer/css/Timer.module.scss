@@ -12,9 +12,9 @@
 }
 
 .timerBtn {
-  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
   padding: 1rem;
   font-size: 1.5rem;
-  margin: 0 auto 4rem auto;
-  text-align: center;
 }

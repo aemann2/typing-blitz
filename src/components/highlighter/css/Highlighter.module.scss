@@ -9,6 +9,18 @@
   color: $highlight;
 }
 
+@media only screen and (max-width: 1650px) {
+  .firstWord {
+    font-size: 5rem;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .firstWord {
+    font-size: 3.8rem;
+  }
+}
+
 // @keyframes color-change {
 //   0% {
 //     color: $white;

@@ -34,6 +34,20 @@
   }
 }
 
+@media only screen and (max-width: 1650px) {
+  .button {
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
 // fade out:
 // https://dev.to/virtualkirill/animate-mounts-and-unmounts-in-react-with-use-animate-presence-1akm
 // https://www.npmjs.com/package/use-animate-presence
