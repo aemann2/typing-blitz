@@ -29,6 +29,9 @@ body {
   font-family: 'Roboto Mono', monospace;
   color: $white;
   background-color: $gray-black;
+  min-width: 800px;
+  // keeps absolute positioned elements from sliding below min-width
+  position: relative;
 }
 
 main {

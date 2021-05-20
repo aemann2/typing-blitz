@@ -48,6 +48,13 @@
   }
 }
 
+@media only screen and (max-width: 800px) {
+  .difficulty {
+    right: 1.5rem;
+    bottom: 10%;
+  }
+}
+
 // fade out:
 // https://dev.to/virtualkirill/animate-mounts-and-unmounts-in-react-with-use-animate-presence-1akm
 // https://www.npmjs.com/package/use-animate-presence
