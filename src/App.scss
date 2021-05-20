@@ -5,6 +5,7 @@ $white: #fffef5;
 $gray-black: #313131;
 $highlight: #ffcb13;
 $red: #ff8484;
+$opaque-red: #ff84848e;
 
 /* Globals */
 
@@ -47,6 +48,6 @@ mark {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-top: -5%;
+  margin-top: -4%;
   order: 1;
 }
