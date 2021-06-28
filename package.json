@@ -1,48 +1,29 @@
 {
-  "name": "typing-game",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "bootstrap": "^4.6.0",
-    "random-words": "^1.1.1",
-    "react": "^17.0.2",
-    "react-bootstrap": "^1.6.0",
-    "react-compound-timer": "^1.2.0",
-    "react-dom": "^17.0.2",
-    "react-highlight-regex": "^0.1.1",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
-  },
+  "name": "typing-blitz",
+  "version": "1.0.0",
+  "description": "backend for Typing Blitz",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server",
+    "server": "nodemon server"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aemann2/typing-blitz.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "Adam Mann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aemann2/typing-blitz/issues"
+  },
+  "homepage": "https://github.com/aemann2/typing-blitz#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "sass": "^1.32.13",
-    "sass-loader": "^10.1.1",
-    "webpack": "^4.44.2"
+    "concurrently": "^6.2.0"
   }
 }
