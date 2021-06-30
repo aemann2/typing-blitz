@@ -2,6 +2,7 @@ import { useContext, useRef, useEffect } from 'react';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { ScoreContext } from '../../context/ScoreContext';
+import axios from 'axios';
 import classes from './css/Popup.module.scss';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -12,11 +13,23 @@ const Popup = () => {
   const { currentWord, wordArray, setCurrentWord } = useContext(WordsContext);
 
   const button = useRef(null);
+  
+  async function testPost() {
+    try {
+      const res = await axios.post('/api/v1/scores', { player: "TST2", score: score});
+
+      console.log(res);
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleClose = () => {
     setShowPopup(false);
     const wordIndex = wordArray.indexOf(currentWord);
     setCurrentWord(wordArray[wordIndex + 1]);
+    testPost();
     setScore(0);
   };
 
