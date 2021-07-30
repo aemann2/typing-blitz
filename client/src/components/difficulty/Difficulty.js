@@ -1,35 +1,74 @@
 import React, { useContext } from 'react';
 import classes from './css/Difficulty.module.scss';
 import { GameStateContext } from '../../context/GameStateContext';
+import { motion } from 'framer-motion';
+
+const groupVariants = {
+	hidden: {
+		opacity: 1,
+	},
+	show: {
+		transition: {
+			delay: 0.4,
+			staggerChildren: 0.3,
+		},
+	},
+};
+
+const buttonVariants = {
+	hidden: {
+		opacity: 1,
+		x: '-100vw',
+	},
+	show: {
+		x: 1,
+	},
+};
 
 const Difficulty = () => {
-  const { isTimeOut, setDifficulty } = useContext(GameStateContext);
+	const { isTimeOut, setDifficulty } = useContext(GameStateContext);
 
-  const handleClick = (e) => {
-    setDifficulty(e.target.value);
-  };
+	const handleClick = (e) => {
+		setDifficulty(e.target.value);
+	};
 
-  return (
-    <>
-      {isTimeOut && (
-        <div className={`${classes.difficulty} ${classes.fadeIn}`}>
-          <button className={classes.button} onClick={handleClick} value='easy'>
-            easy
-          </button>
-          <button
-            className={classes.button}
-            onClick={handleClick}
-            value='medium'
-          >
-            medium
-          </button>
-          <button className={classes.button} onClick={handleClick} value='hard'>
-            hard
-          </button>
-        </div>
-      )}
-    </>
-  );
+	return (
+		<>
+			{isTimeOut && (
+				<motion.div
+					className={classes.difficulty}
+					variants={groupVariants}
+					initial='hidden'
+					animate='show'
+				>
+					<motion.button
+						className={classes.button}
+						onClick={handleClick}
+						variants={buttonVariants}
+						value='easy'
+					>
+						easy
+					</motion.button>
+					<motion.button
+						className={classes.button}
+						onClick={handleClick}
+						variants={buttonVariants}
+						value='medium'
+					>
+						medium
+					</motion.button>
+					<motion.button
+						className={classes.button}
+						onClick={handleClick}
+						variants={buttonVariants}
+						value='hard'
+					>
+						hard
+					</motion.button>
+				</motion.div>
+			)}
+		</>
+	);
 };
 
 export default Difficulty;
