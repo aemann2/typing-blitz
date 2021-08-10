@@ -4,9 +4,6 @@ import { GameStateContext } from '../../context/GameStateContext';
 import { motion } from 'framer-motion';
 
 const groupVariants = {
-	hidden: {
-		opacity: 1,
-	},
 	show: {
 		transition: {
 			delay: 0.4,
@@ -17,7 +14,6 @@ const groupVariants = {
 
 const buttonVariants = {
 	hidden: {
-		opacity: 1,
 		x: '-100vw',
 	},
 	show: {
