@@ -4,8 +4,7 @@
 
 **Typing Blitz** is an arcade-style typing game built using React and React Bootstrap. The game generates random words using the [random-words](https://www.npmjs.com/package/random-words) library.
 
-The next step of the project is to add a scoreboard using a database that keeps track of users' scores. More animations coming as well...stay tuned! 
-
+The next step of the project is to add a scoreboard using a database that keeps track of users' scores. More animations coming as well...stay tuned!
 
 ## Technology:
 
@@ -15,7 +14,6 @@ React, React Bootstrap, CSS Modules, random-words, react-compound-timer, react-h
 
 - Multiple libraries to speed up development
 - A game loop using Javascript
-- React Bootstrap (for the game's popup modal)
 - CSS Modules
 - @media (hover: none) as a rough way of detecting mobile devices
 - A combined context provider to consolidate several providers into one

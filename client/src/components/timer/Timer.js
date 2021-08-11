@@ -32,7 +32,7 @@ const Countdown = () => {
 	async function getData() {
 		try {
 			const res = await axios.get('/api/v1/scores');
-			// console.log(res.data.data);
+			console.log(res.data.data);
 			setDbData(res.data.data);
 		} catch (error) {
 			console.log(error);

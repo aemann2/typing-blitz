@@ -3,8 +3,8 @@ import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { ScoreContext } from '../../context/ScoreContext';
 import classes from './css/Popup.module.scss';
-import Button from 'react-bootstrap/Button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getRank } from '../../utils/helpers';
 import axios from 'axios';
 
 const backdropVariants = {
@@ -66,22 +66,30 @@ const Popup = () => {
 					>
 						<h2>Time Up!</h2>
 						<p>Your score is: {score}</p>
-						<p>{`Rank: ${
-							dbData.findIndex((entry) => entry.score <= score) + 1
-						} out of ${dbData.length + 1}`}</p>
-						{dbData.findIndex((entry) => entry.score <= score) + 1 <= 19 && (
+						<p>{`Rank: ${getRank(dbData, score)} out of ${dbData.length}`}</p>
+						{getRank(dbData, score) <= 20 && (
 							<div>
-								<p>You're in the top 20! </p>
+								<p>Yay, you're in the top 20! </p>
 								<p>Enter your initials:</p>
 								<input placeholder={'ABC'} maxLength={3}></input>
 							</div>
 						)}
-						<Button variant='primary' ref={button} onClick={handleClose}>
-							Play Again
-						</Button>
-						<Button variant='primary' ref={button} onClick={handleClose}>
-							High Scores
-						</Button>
+						<div className={classes.buttons}>
+							<button
+								className={classes.button}
+								ref={button}
+								onClick={handleClose}
+							>
+								Play Again
+							</button>
+							<button
+								className={classes.button}
+								ref={button}
+								onClick={handleClose}
+							>
+								High Scores
+							</button>
+						</div>
 					</motion.div>
 				</motion.div>
 			)}
@@ -90,3 +98,5 @@ const Popup = () => {
 };
 
 export default Popup;
+
+// dbData.findIndex((entry) => entry.score <= score) + 1
