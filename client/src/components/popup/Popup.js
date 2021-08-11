@@ -2,10 +2,10 @@ import { useContext, useRef, useEffect } from 'react';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { ScoreContext } from '../../context/ScoreContext';
-import axios from 'axios';
 import classes from './css/Popup.module.scss';
 import Button from 'react-bootstrap/Button';
 import { motion, AnimatePresence } from 'framer-motion';
+import axios from 'axios';
 
 const backdropVariants = {
 	visible: { opacity: 1 },
@@ -15,31 +15,27 @@ const backdropVariants = {
 
 const Popup = () => {
 	const { showPopup, setShowPopup } = useContext(GameStateContext);
-	const { score, setScore } = useContext(ScoreContext);
+	const { score, setScore, dbData } = useContext(ScoreContext);
 	const { currentWord, wordArray, setCurrentWord } = useContext(WordsContext);
 
 	const button = useRef(null);
 
-	async function testPost() {
+	async function postData() {
 		try {
-			const res = await axios.post('/api/v1/scores', {
+			await axios.post('/api/v1/scores', {
 				player: 'TST2',
 				score: score,
 			});
-
-			const res2 = await axios.get('/api/v1/scores');
-			const data = res2.data.data;
-			console.log(data.slice(0, 20));
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
 	const handleClose = () => {
+		postData();
 		setShowPopup(false);
 		const wordIndex = wordArray.indexOf(currentWord);
 		setCurrentWord(wordArray[wordIndex + 1]);
-		testPost();
 		setScore(0);
 	};
 
@@ -47,7 +43,7 @@ const Popup = () => {
 		if (button.current) {
 			button.current.focus();
 		}
-	}, [showPopup]);
+	}, []);
 
 	return (
 		<AnimatePresence exitBeforeEnter>
@@ -69,9 +65,22 @@ const Popup = () => {
 						exit={{ y: '-100vh' }}
 					>
 						<h2>Time Up!</h2>
-						<p>Score: {score}</p>
+						<p>Your score is: {score}</p>
+						<p>{`Rank: ${
+							dbData.findIndex((entry) => entry.score <= score) + 1
+						} out of ${dbData.length + 1}`}</p>
+						{dbData.findIndex((entry) => entry.score <= score) + 1 <= 19 && (
+							<div>
+								<p>You're in the top 20! </p>
+								<p>Enter your initials:</p>
+								<input placeholder={'ABC'} maxLength={3}></input>
+							</div>
+						)}
 						<Button variant='primary' ref={button} onClick={handleClose}>
 							Play Again
+						</Button>
+						<Button variant='primary' ref={button} onClick={handleClose}>
+							High Scores
 						</Button>
 					</motion.div>
 				</motion.div>

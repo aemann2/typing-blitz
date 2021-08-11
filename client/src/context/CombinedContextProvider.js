@@ -5,9 +5,9 @@ import ScoreContextProvider from './ScoreContext';
 import combineComponents from '../utils/combineComponents';
 
 const providers = [
-  GameStateContextProvider,
-  WordsContextProvider,
-  ScoreContextProvider,
+	GameStateContextProvider,
+	WordsContextProvider,
+	ScoreContextProvider,
 ];
 
 const CombinedContextProvider = combineComponents(...providers);

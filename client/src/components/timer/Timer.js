@@ -5,6 +5,7 @@ import { ScoreContext } from '../../context/ScoreContext';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 
 const timerVariants = {
 	hidden: {
@@ -20,13 +21,23 @@ const timerVariants = {
 };
 
 const Countdown = () => {
-	const { setScore } = useContext(ScoreContext);
+	const { setScore, setDbData } = useContext(ScoreContext);
 	const { setSubstring, setToHighlight } = useContext(WordsContext);
 	const { isTimeOut, setIsTimeOut, setShowPopup } =
 		useContext(GameStateContext);
 
 	const button = useRef(null);
 	const timer = useRef(null);
+
+	async function getData() {
+		try {
+			const res = await axios.get('/api/v1/scores');
+			// console.log(res.data.data);
+			setDbData(res.data.data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	useEffect(() => {
 		if (button.current) {
@@ -38,7 +49,7 @@ const Countdown = () => {
 		<motion.div variants={timerVariants} initial='hidden' animate='show'>
 			<Timer
 				// initialTime={30000}
-				initialTime={1000}
+				initialTime={5000}
 				ref={timer}
 				startImmediately={false}
 				lastUnit='s'
@@ -48,6 +59,7 @@ const Countdown = () => {
 					{
 						time: 0,
 						callback: () => {
+							getData();
 							setIsTimeOut(true);
 							setShowPopup(true);
 						},
@@ -75,9 +87,9 @@ const Countdown = () => {
 										reset();
 										start();
 										setIsTimeOut(false);
-										setScore(0);
 										setSubstring('');
 										setToHighlight('');
+										setScore(0);
 									}}
 									type='button'
 								>
