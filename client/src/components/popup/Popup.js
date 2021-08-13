@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect } from 'react';
+import { useContext, useRef, useEffect, useState } from 'react';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { ScoreContext } from '../../context/ScoreContext';
@@ -18,12 +18,14 @@ const Popup = () => {
 	const { score, setScore, dbData } = useContext(ScoreContext);
 	const { currentWord, wordArray, setCurrentWord } = useContext(WordsContext);
 
+	const [nameInitials, setNameInitials] = useState('');
+
 	const button = useRef(null);
 
 	async function postData() {
 		try {
 			await axios.post('/api/v1/scores', {
-				player: 'TST2',
+				player: nameInitials ? nameInitials : 'player',
 				score: score,
 			});
 		} catch (error) {
@@ -31,11 +33,16 @@ const Popup = () => {
 		}
 	}
 
+	const handleChange = (e) => {
+		setNameInitials(e.target.value);
+	};
+
 	const handleClose = () => {
 		postData();
 		setShowPopup(false);
 		const wordIndex = wordArray.indexOf(currentWord);
 		setCurrentWord(wordArray[wordIndex + 1]);
+		setNameInitials('');
 		setScore(0);
 	};
 
@@ -66,12 +73,19 @@ const Popup = () => {
 					>
 						<h2>Time Up!</h2>
 						<p>Your score is: {score}</p>
-						<p>{`Rank: ${getRank(dbData, score)} out of ${dbData.length}`}</p>
+						<p>{`Rank: ${getRank(dbData, score) + 1} out of ${
+							dbData.length
+						}`}</p>
 						{getRank(dbData, score) <= 20 && (
 							<div>
 								<p>Yay, you're in the top 20! </p>
 								<p>Enter your initials:</p>
-								<input placeholder={'ABC'} maxLength={3}></input>
+								<input
+									placeholder={'ABC'}
+									maxLength={3}
+									value={nameInitials}
+									onChange={handleChange}
+								></input>
 							</div>
 						)}
 						<div className={classes.buttons}>
@@ -98,5 +112,3 @@ const Popup = () => {
 };
 
 export default Popup;
-
-// dbData.findIndex((entry) => entry.score <= score) + 1
