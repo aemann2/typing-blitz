@@ -20,13 +20,37 @@
 .modal {
 	max-width: 400px;
 	color: black;
-	font-family: 'Rubik', sans-serif;
+	font-family: 'Roboto Mono';
 	text-align: center;
 	margin: 0 auto;
-	padding: 40px 20px;
+	padding: 1rem 1rem;
 	background: white;
 	border-radius: 10px;
 	text-align: center;
+}
+
+.modal h2 {
+	font-size: 2rem;
+}
+
+.modal p {
+	color: #444;
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-top: 0.5rem;
+}
+
+.modal .topScore {
+	color: black;
+	font-size: 1rem;
+}
+
+.input {
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+	width: 3.5rem;
+	border: 2px solid black;
+	border-radius: 4px;
 }
 
 .buttons {
@@ -37,16 +61,40 @@
 	border: none;
 	display: inline-block;
 	background-color: #1863f9;
+	font-size: 1.1rem;
 	padding: 0.5rem 1rem;
 	border-radius: 8px;
 	color: #fffef5;
 }
 
 .button:first-child {
-	margin-right: 1rem;
+	margin: auto;
 }
 
-.modal p {
-	color: #444;
-	font-weight: bold;
+.tableWrapper {
+	margin: 1rem;
+	height: 250px;
+	overflow-y: scroll;
+	border-radius: 10px;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.tableWrapper::-webkit-scrollbar {
+	display: none;
+}
+
+.table {
+	margin: auto;
+	background-color: #313131;
+	width: 100%;
+}
+
+.table td {
+	width: 5rem;
+	color: #ffcb13;
+}
+
+.table th {
+	color: #ff8484;
 }

@@ -34,7 +34,7 @@ const Popup = () => {
 	}
 
 	const handleChange = (e) => {
-		setNameInitials(e.target.value);
+		setNameInitials(e.target.value.toUpperCase());
 	};
 
 	const handleClose = () => {
@@ -67,7 +67,7 @@ const Popup = () => {
 					<motion.div
 						className={classes.modal}
 						initial={{ y: '-100vh', opacity: 0 }}
-						animate={{ y: '200px', opacity: 1, transition: { delay: 0.51 } }}
+						animate={{ y: '100px', opacity: 1, transition: { delay: 0.51 } }}
 						transition={{ type: 'spring', stiffness: 200 }}
 						exit={{ y: '-100vh' }}
 					>
@@ -78,9 +78,12 @@ const Popup = () => {
 						}`}</p>
 						{getRank(dbData, score) <= 20 && (
 							<div>
-								<p>Yay, you're in the top 20! </p>
-								<p>Enter your initials:</p>
+								<p className={classes.topScore}>
+									...yay, you're in the top 20!{' '}
+								</p>
+								<p className={classes.topScore}>Enter your initials:</p>
 								<input
+									className={classes.input}
 									placeholder={'ABC'}
 									maxLength={3}
 									value={nameInitials}
@@ -94,16 +97,33 @@ const Popup = () => {
 								ref={button}
 								onClick={handleClose}
 							>
-								Play Again
-							</button>
-							<button
-								className={classes.button}
-								ref={button}
-								onClick={handleClose}
-							>
-								High Scores
+								{getRank(dbData, score) <= 20
+									? 'Submit Score and Play Again'
+									: 'Play Again'}
 							</button>
 						</div>
+						{dbData && (
+							<div className={classes.tableWrapper}>
+								<table className={classes.table}>
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th>Score</th>
+											<th>Name</th>
+										</tr>
+									</thead>
+									<tbody>
+										{dbData.slice(0, 20).map((player, index) => (
+											<tr key={player._id}>
+												<td>{index + 1}</td>
+												<td>{player.score}</td>
+												<td>{player.player}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+						)}
 					</motion.div>
 				</motion.div>
 			)}
