@@ -29,11 +29,14 @@ const WordChanger = () => {
 		substring,
 		setSubstring,
 	} = useContext(WordsContext);
-	const { isTimeOut, difficulty } = useContext(GameStateContext);
+	const { isTimeOut, difficulty, showRoundEndModal } =
+		useContext(GameStateContext);
 
 	useEffect(() => {
-		setWordArray(generateWords(difficulty));
-	}, [setWordArray, difficulty]);
+		if (!showRoundEndModal) {
+			setWordArray(generateWords(difficulty));
+		}
+	}, [setWordArray, difficulty, showRoundEndModal]);
 
 	useEffect(() => {
 		setCurrentWord(wordArray[0]);
