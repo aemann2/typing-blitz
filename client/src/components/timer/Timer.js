@@ -23,8 +23,13 @@ const timerVariants = {
 const Countdown = () => {
 	const { setScore, setDbData } = useContext(ScoreContext);
 	const { setSubstring, setToHighlight } = useContext(WordsContext);
-	const { isTimeOut, setIsTimeOut, setShowPopup } =
-		useContext(GameStateContext);
+	const {
+		isTimeOut,
+		setIsTimeOut,
+		showRoundBeginModal,
+		showRoundEndModal,
+		setShowRoundEndModal,
+	} = useContext(GameStateContext);
 
 	const button = useRef(null);
 	const timer = useRef(null);
@@ -40,10 +45,10 @@ const Countdown = () => {
 	}
 
 	useEffect(() => {
-		if (button.current) {
+		if (showRoundEndModal === false) {
 			button.current.focus();
 		}
-	}, [isTimeOut]);
+	}, [showRoundEndModal, showRoundBeginModal]);
 
 	return (
 		<motion.div variants={timerVariants} initial='hidden' animate='show'>
@@ -61,7 +66,7 @@ const Countdown = () => {
 						callback: () => {
 							getData();
 							setIsTimeOut(true);
-							setShowPopup(true);
+							setShowRoundEndModal(true);
 						},
 					},
 				]}

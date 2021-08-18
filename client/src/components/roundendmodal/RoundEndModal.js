@@ -2,7 +2,7 @@ import { useContext, useRef, useEffect, useState } from 'react';
 import { WordsContext } from '../../context/WordsContext';
 import { GameStateContext } from '../../context/GameStateContext';
 import { ScoreContext } from '../../context/ScoreContext';
-import classes from './css/Popup.module.scss';
+import classes from './css/RoundEndModal.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getRank } from '../../utils/helpers';
 import axios from 'axios';
@@ -14,7 +14,8 @@ const backdropVariants = {
 };
 
 const Popup = () => {
-	const { showPopup, setShowPopup } = useContext(GameStateContext);
+	const { showRoundEndModal, setShowRoundEndModal } =
+		useContext(GameStateContext);
 	const { score, setScore, dbData } = useContext(ScoreContext);
 	const { currentWord, wordArray, setCurrentWord } = useContext(WordsContext);
 
@@ -39,7 +40,7 @@ const Popup = () => {
 
 	const handleClose = () => {
 		postData();
-		setShowPopup(false);
+		setShowRoundEndModal(false);
 		const wordIndex = wordArray.indexOf(currentWord);
 		setCurrentWord(wordArray[wordIndex + 1]);
 		setNameInitials('');
@@ -54,14 +55,14 @@ const Popup = () => {
 
 	return (
 		<AnimatePresence exitBeforeEnter>
-			{showPopup && (
+			{showRoundEndModal && (
 				// this div represents the semi-transparent BG
 				<motion.div
 					className={classes.backdrop}
 					variants={backdropVariants}
 					animate='visible'
 					initial='hidden'
-					exit={{ opacity: 0 }}
+					exit={{ opacity: 0, zIndex: -1 }}
 				>
 					{/* the actual modal popup */}
 					<motion.div
@@ -73,56 +74,62 @@ const Popup = () => {
 					>
 						<h2>Time Up!</h2>
 						<p>Your score is: {score}</p>
-						<p>{`Rank: ${getRank(dbData, score) + 1} out of ${
-							dbData.length
-						}`}</p>
-						{getRank(dbData, score) <= 20 && (
+						{dbData ? (
 							<div>
-								<p className={classes.topScore}>
-									...yay, you're in the top 20!{' '}
-								</p>
-								<p className={classes.topScore}>Enter your initials:</p>
-								<input
-									className={classes.input}
-									placeholder={'ABC'}
-									maxLength={3}
-									value={nameInitials}
-									onChange={handleChange}
-								></input>
+								<p>{`Rank: ${getRank(dbData, score) + 1} out of ${
+									dbData.length
+								}`}</p>
+								{getRank(dbData, score) <= 20 && (
+									<div>
+										<p className={classes.topScore}>
+											...yay, you're in the top 20!{' '}
+										</p>
+										<p className={classes.topScore}>Enter your initials:</p>
+										<input
+											className={classes.input}
+											placeholder={'ABC'}
+											maxLength={3}
+											value={nameInitials}
+											onChange={handleChange}
+										></input>
+									</div>
+								)}
+								<div className={classes.buttons}>
+									<button
+										className={classes.button}
+										ref={button}
+										onClick={handleClose}
+									>
+										{getRank(dbData, score) <= 20
+											? 'Submit Score and Play Again'
+											: 'Play Again'}
+									</button>
+								</div>
+								{dbData && (
+									<div className={classes.tableWrapper}>
+										<table className={classes.table}>
+											<thead>
+												<tr>
+													<th>No.</th>
+													<th>Score</th>
+													<th>Name</th>
+												</tr>
+											</thead>
+											<tbody>
+												{dbData.slice(0, 20).map((player, index) => (
+													<tr key={player._id}>
+														<td>{index + 1}</td>
+														<td>{player.score}</td>
+														<td>{player.player}</td>
+													</tr>
+												))}
+											</tbody>
+										</table>
+									</div>
+								)}
 							</div>
-						)}
-						<div className={classes.buttons}>
-							<button
-								className={classes.button}
-								ref={button}
-								onClick={handleClose}
-							>
-								{getRank(dbData, score) <= 20
-									? 'Submit Score and Play Again'
-									: 'Play Again'}
-							</button>
-						</div>
-						{dbData && (
-							<div className={classes.tableWrapper}>
-								<table className={classes.table}>
-									<thead>
-										<tr>
-											<th>No.</th>
-											<th>Score</th>
-											<th>Name</th>
-										</tr>
-									</thead>
-									<tbody>
-										{dbData.slice(0, 20).map((player, index) => (
-											<tr key={player._id}>
-												<td>{index + 1}</td>
-												<td>{player.score}</td>
-												<td>{player.player}</td>
-											</tr>
-										))}
-									</tbody>
-								</table>
-							</div>
+						) : (
+							'Loading scores...'
 						)}
 					</motion.div>
 				</motion.div>
