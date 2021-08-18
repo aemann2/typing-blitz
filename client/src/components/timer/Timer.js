@@ -37,7 +37,6 @@ const Countdown = () => {
 	async function getData() {
 		try {
 			const res = await axios.get('/api/v1/scores');
-			console.log(res.data.data);
 			setDbData(res.data.data);
 		} catch (error) {
 			console.log(error);
@@ -53,8 +52,7 @@ const Countdown = () => {
 	return (
 		<motion.div variants={timerVariants} initial='hidden' animate='show'>
 			<Timer
-				// initialTime={30000}
-				initialTime={5000}
+				initialTime={30000}
 				ref={timer}
 				startImmediately={false}
 				lastUnit='s'

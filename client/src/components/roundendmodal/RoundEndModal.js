@@ -76,7 +76,7 @@ const Popup = () => {
 						<p>Your score is: {score}</p>
 						{dbData ? (
 							<div>
-								<p>{`Rank: ${getRank(dbData, score) + 1} out of ${
+								<p>{`Rank: ${getRank(dbData, score)} out of ${
 									dbData.length
 								}`}</p>
 								{getRank(dbData, score) <= 20 && (

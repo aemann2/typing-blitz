@@ -5,7 +5,7 @@ export function getRank(scores, roundScore) {
 		} else if (roundScore < scores[scores.length - 1].score) {
 			return scores.length;
 		} else {
-			return scores.findIndex((entry) => roundScore >= entry.score);
+			return scores.findIndex((entry) => roundScore >= entry.score) + 1;
 		}
 	}
 }
