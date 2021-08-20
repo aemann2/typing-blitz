@@ -13,6 +13,7 @@
 
 #config 
 /config
+/client
 
 # misc
 .DS_Store
